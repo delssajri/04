@@ -114,7 +114,7 @@ class Application(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers)
 
     def __init_db(self):
-        couch = couchdb.Server(url='http://localhost:5984/')
+        couch = couchdb.Server(url='http://192.168.1.62:5984/')
         try:
             self.db = couch['payments']
         except:
