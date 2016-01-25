@@ -14,6 +14,10 @@ When(/^I touch Prev/) do ||
   touch("AppCompatButton id:'btnPrev'")
 end
 
+When(/^I touch Done/) do ||
+  touch("AppCompatButton id:'btnDone'")
+end
+
 Then(/^I check button Prev disabled$/) do
   check_element_exists("AppCompatButton id:'btnPrev' enabled:'false'")
 end
@@ -50,8 +54,23 @@ Then(/^I see icon visafront$/) do
   check_element_exists("CreditEditText contentDescription:'visafront'")
 end
 
+When(/^I wait (\d+) sec$/) do |arg1|
+  sleep(arg1.to_i)
+end
 
+Given(/^payment server$/) do
+  r=`${PROJECT_ROOT}/restart.sh`
+  puts r
+end
 
-
-
-
+Then(/^I find db entry$/) do
+  doc_id = `curl -s http://localhost:5985/payments/_all_docs | grep -Po '"id":.*?[^\\\\]",' | perl -pe 's/"id"://; s/^"//; s/",$//'`
+  puts "Found document with id=#{doc_id}"
+  doc_entry = `curl -s http://localhost:5985/payments/#{doc_id}`
+  puts "Found document entry '#{doc_entry}'"
+  r=`echo '#{doc_entry}' | grep -P '"number".?:"404'`
+  if r.empty?
+    fail("Payment not found in db")
+  end
+  puts "Found field #{r}"
+end
