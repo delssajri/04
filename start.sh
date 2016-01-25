@@ -1,6 +1,8 @@
 #!/bin/bash
 
-bash ./db/start.sh
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+bash ${DIR}/db/start.sh || exit 1
 sleep 5
-bash ./websrv/start.sh
+bash ${DIR}/websrv/start.sh || exit 1
 

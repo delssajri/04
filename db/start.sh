@@ -3,6 +3,11 @@
 websrv_container_name="delssajri_websrv"
 couchdb_container_name="delssajri_couchdb"
 
+if [ "$(id -u)" != "0" ]; then
+   echo "Root required" 1>&2
+   exit 1
+fi
+
 docker ps | grep -q "$couchdb_container_name" && running="true"
 if [ ! -z "$running" ] ; then
     echo "$couchdb_container_name already running"

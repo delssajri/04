@@ -3,6 +3,11 @@
 websrv_container_name="delssajri_websrv"
 couchdb_container_name="delssajri_couchdb"
 
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
 docker ps | grep -q "$websrv_container_name" && running="true"
 if [ ! -z "$running" ] ; then
     echo "$websrv_container_name already running"

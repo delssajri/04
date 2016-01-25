@@ -1,5 +1,7 @@
 #!/bin/bash
 
-bash ./websrv/stop.sh
-bash ./db/stop.sh
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+bash ${DIR}/websrv/stop.sh
+bash ${DIR}/db/stop.sh
 
