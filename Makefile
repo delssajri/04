@@ -12,7 +12,7 @@ debug_dir:
 	@mkdir debug > /dev/null 2>&1 || /bin/true
 
 
-test: all
+test:
 	@cd calabash ; \
 	calabash-android resign ../$(debug_dir)/app-debug.apk; \
 	adb install -r ../$(debug_dir)/app-debug.apk; \
