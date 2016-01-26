@@ -66,6 +66,7 @@ class WebSocket(tornado.websocket.WebSocketHandler):
                 '{"status": 404, "reason": "Incorrect payment fields"}')
             return
         order = {
+            'type': 'user',
             'payment': {
                 'owner': owner,
                 'number': number,

@@ -68,7 +68,7 @@ Then(/^I find db entry$/) do
   puts "Found document with id=#{doc_id}"
   doc_entry = `curl -s http://localhost:5985/payments/#{doc_id}`
   puts "Found document entry '#{doc_entry}'"
-  r=`echo '#{doc_entry}' | grep -P '"number".?:"404'`
+  r=`echo '#{doc_entry}' | grep -P '"type".?:"user"'`
   if r.empty?
     fail("Payment not found in db")
   end
