@@ -31,6 +31,7 @@ Application apk file will be located in ./debug/ directory. File isn't signed, s
 - run `bash gradlew assembleDebug` to build apk. Resulting apk will be located in `CreditCard/app/build/outputs/apk` directory
 
 ## Test:
+- configure hostname for host running tests as `farm`. Configure either your DNS server or set host alias to this name. Be sure host responds for `farm`. For example you can try to ping it. CreditCard application sends its request to farm.
 - launch your prefered Android Device via Android Virtual Device Manager
 - run `sudo bash` to become root user. Please don't use `su` and its forms because you need to preserv your $HOME env.
 - run `source ./env` to set environment variables: ANDROID_HOME, JAVA_HOME and update PATH for Android binaries. Edit ./env if your Android SDK and JDK binaries have different location.
